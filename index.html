@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jogo da Forca com IA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="container">
+    <h1>Jogo da Forca</h1>
+
+    <nav class="modos" aria-label="Modos de jogo">
+      <button class="modo ativo" data-modo="solo">Solo</button>
+      <button class="modo" data-modo="multi">Multiplayer (2 jogadores)</button>
+      <button class="modo" data-modo="ia">Você define, a IA adivinha</button>
+    </nav>
+
+    <p id="placar" class="placar"></p>
+
+    <!-- Tela para digitar a palavra secreta (multiplayer e modo IA) -->
+    <section id="setup" class="painel oculto">
+      <p id="setup-instrucao"></p>
+      <input id="palavra-input" type="password" maxlength="20" autocomplete="off"
+             autocorrect="off" autocapitalize="off" spellcheck="false"
+             placeholder="Palavra secreta (só letras)">
+      <div class="linha">
+        <button id="btn-confirmar" type="button">Confirmar palavra</button>
+        <button id="btn-sortear" class="secundario" type="button">Sortear para mim</button>
+      </div>
+      <p id="setup-erro" class="erro"></p>
+    </section>
+
+    <!-- Área do jogo -->
+    <section id="jogo" class="painel oculto">
+      <svg id="forca" viewBox="0 0 200 250" role="img" aria-label="Desenho da forca">
+        <line x1="20" y1="230" x2="180" y2="230" />
+        <line x1="60" y1="230" x2="60" y2="20" />
+        <line x1="60" y1="20" x2="140" y2="20" />
+        <line x1="140" y1="20" x2="140" y2="50" />
+        <circle class="parte" cx="140" cy="70" r="20" />
+        <line class="parte" x1="140" y1="90" x2="140" y2="150" />
+        <line class="parte" x1="140" y1="105" x2="115" y2="130" />
+        <line class="parte" x1="140" y1="105" x2="165" y2="130" />
+        <line class="parte" x1="140" y1="150" x2="120" y2="190" />
+        <line class="parte" x1="140" y1="150" x2="160" y2="190" />
+      </svg>
+
+      <p id="palavra" class="palavra" aria-live="polite"></p>
+      <p id="erradas" class="erradas"></p>
+      <p id="status" class="status" aria-live="polite"></p>
+      <p id="log-ia" class="log-ia"></p>
+
+      <div id="teclado" class="teclado"></div>
+
+      <div class="linha">
+        <button id="btn-proxima" class="oculto">Próxima rodada</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Ordem importa: dicionário -> agentes -> lógica do jogo -->
+  <script src="js/palavras.js"></script>
+  <script src="js/agentes.js"></script>
+  <script src="js/jogo.js"></script>
+</body>
+</html>
